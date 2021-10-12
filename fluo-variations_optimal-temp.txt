@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct 11 14:54:29 2021
+
+@author: Gregoire
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def pfl_dop(v, delta, k, Rab, Gam):
+    return .25*Rab**2/(0.5*Rab**2+.25*Gam**2+(delta-k*v)**2)
+
+def v0(T):
+    kb = 1.38e-23
+    m = 40*1.66e-27
+    return np.sqrt(2*kb*T/m)
+
+def MB(v, T):
+    kb = 1.38e-23
+    m = 40*1.66e-27
+    return np.sqrt(m/(np.pi*2*kb*T)) * np.exp(-m*v**2/(2*kb*T))
+
+def normalized(x):
+    return (x-np.min(x))/(np.max(x)-np.min(x))
+
+def prob_fluo(vmin, vmax, nv, T, delta, k, Rab, Gam):
+    nu = k*np.linspace(vmin, vmax, nv)
+    return nu, pfl_dop(nu/k, delta, k, Rab, Gam)*MB(nu/k, T)
+
+
+
+k = 15826663 # m^-1
+Gam = 21.57e6 # Hz
+delta = -1*Gam/2
+lam = 397e-9 # m
+hbar = 1.0545718e-34
+c = 299792458
+I = 170
+
+
+nu = k*np.linspace(-10,10,10000)
+y = MB(nu/k, .05)
+
+Rab = np.sqrt(3*lam**3*Gam/(4*np.pi**2*hbar*c) * I)
+
+pfl = pfl_dop(nu/k, delta, k, Rab, Gam)
+
+plt.figure()
+plt.plot(nu, y/np.max(y))
+plt.plot(nu, pfl/np.max(pfl), '--')
+
+
+vmin = -10
+vmax = 10
+nv = 5000
+T = .05
+
+nunu, dop = prob_fluo(vmin, vmax, nv, T, delta, k, Rab, Gam)
+
+plt.figure()
+plt.plot(nunu, dop)
+
+temps = np.linspace(.00055, .05, 250)
+deltas = np.linspace(0, 10, 250)*Gam/2
+z = []
+for i, temp in enumerate(temps):
+    z.append([])    
+    for j, delta in enumerate(deltas):
+        nunu, dop = prob_fluo(vmin, vmax, nv, temp, delta, k, Rab, Gam)
+        z[i].append(np.sum(dop))
+
+
+my_cm = plt.get_cmap('jet')
+
+n = np.shape(z)[1]
+plt.figure()
+for i in np.arange(n):
+    print(i)
+    plt.plot(temps, np.array(z)[:,i], color = my_cm(i/n))
+plt.xlabel('temperature')
+
+
+
+n = np.shape(z)[1]
+plt.figure()
+for i in 2*np.arange(int(n/2)):
+    print(i)
+    plt.plot(temps[:-1], np.abs(np.diff(np.array(z)[:,i])), color = my_cm(i/n) )
+plt.xlabel('temperature')
+
+
+T0 = []
+for i in np.arange(n):
+    print(i)
+    T0.append(temps[np.argmax(np.abs(np.diff(np.array(z)[:,i])))])
+
+plt.figure()
+plt.plot(deltas/Gam*2, np.array(T0), 'o')
+
+kb = 1.38e-23
+m = 40*1.66e-27
+A = .25*Rab**2
+B = .25*Gam**2
+deltamoinsv = np.sqrt((A+B)/3)
+V = (deltamoinsv + Gam/2)/k
+T = V**2*m/(2*kb)
+
+
