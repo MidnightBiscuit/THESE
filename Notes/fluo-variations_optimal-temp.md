@@ -8,9 +8,23 @@ $\texttt{MB}$ is the Maxwell-Boltzmann distribution. It provides the probability
 
 $\texttt{pfl\_dop} = \rho_{ee}$ is the atomic ray profile with Doppler effect. It provides the probability of excitation given Rabi frequency, detuning, lambda and velocity of atom. It is considered equal to the excited population, i.e the proportion of excited atoms.
 
+$ \texttt{MB} = \sqrt{\frac{m}{2\pi k_BT}}\exp{-\frac{mv^2}{2k_BT}}$
+
+$\texttt{pfl\_dop} = D = \frac{0.25\Omega_R^2}{0.5\Omega_R^2 + 0.25\Gamma^2 + \Delta^2} = \frac{A/2}{A+B + \Delta^2}$
+
 The fluorescence F is related to the product of both probabilities $ F \propto \texttt{MB}\times \texttt{pfl\_dop} = \texttt{prob\_fluo}$. This product is still a probability, lets call it $P$. $dP/dT = 0$ gives us the temperature for which the fluo is maximum, $d^2P/dT^2 = 0$ gives us the temperature for which the fluorescence variation  $dP/dT$ is maximum.
 
-The idea is to search for the setting where the variation of fluorescence is the highest for a given input in energy. The energy introduced by the GiantMolecule is brought under the form of thermal energy. Thus we want to set the cloud in a configuration with the best variation of fluorescence for a variation in temperature. There are two ways of achieving this. First considering infinitesimal differences, this requires to compute $dP/dT$. Second considering macroscopic differences $\Delta P$ and $\Delta T$. Because we know how much energy the GiantMolecule transfers to the cloud, we can compute the expected $\Delta T$. Then search for the optimal $\Delta P$ given the determines $\Delta T$. In the simulation article, the GMol with incident energy 50eV, transfers 50meV, which produces a 100mK increase of temperature in the cloud.
+$\frac{dD}{dv} = \frac{A}{2}\frac{2\sqrt{z}}{(C+z)^2}, z=(\delta-v)^2, C = A + B$
+
+$\frac{d^2D}{dv^2} = \frac{f}{g} = [-2(C+z)^2 + 8z(C+z)]\frac{A}{2(\dots)^4}$
+
+The idea is to search for the setting where the variation of fluorescence is the highest for a given input in energy. The energy introduced by the GiantMolecule is brought under the form of thermal energy. Thus we want to set the cloud in a configuration with the best variation of fluorescence for a variation in temperature. There are two ways of achieving this. Considering infinitesimal differences, this requires to compute $\frac{d^2D}{dv^2} = 0$.
+
+$\frac{d^2D}{dv^2} = 0 \Rightarrow f = 0 \Rightarrow z = \frac{1}{3}C \Rightarrow \delta - v = \pm \sqrt{\frac{C}{3}} $
+
+Considering the thermal velocity $v = \sqrt{2k_BT/m}$ it is possible to rewrite $v = \delta - z$  as $2k_BT/m = (\delta - z)^2$ then $T = m(\delta - z)^2/(2k_B) / k^2$ 
+
+Second considering macroscopic differences $\Delta P$ and $\Delta T$. Because we know how much energy the GiantMolecule transfers to the cloud, we can compute the expected $\Delta T$. Then search for the optimal $\Delta P$ given the determines $\Delta T$. In the simulation article, the GMol with incident energy 50eV, transfers 50meV, which produces a 100mK increase of temperature in the cloud.
 
 ## Code version from Dec 2 100e6ce
 
