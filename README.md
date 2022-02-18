@@ -45,7 +45,7 @@ See figure 2.7 and 3.2. This program is also used in order to measure contact po
 
 `data_tickle.ipynb` and `data_tickle_reverse.ipynb` retrieve fluorescence measured during a tickle experiment and plot the fluo. Those programs also provide a peak detection in the fluorescence in order to automatically detect the main tickle frequency. The program associates the right frequency with the peak, provided the required elements are provided (scan amplitude, trapping voltages and so on). See subsection 2.3.1 and figure 2.2.
 
-`data_UDC.ipynb ` and `data_URF.ipynb` are also related to tickle measurement. The purpose of those programs is to study the secular frequency as a function of $U_{DC}$ or $U_{RF}$. See subsection 2.3.2 and figures 2.3, 2.4.
+`data_UDC.ipynb` and `data_URF.ipynb` are also related to tickle measurement. The purpose of those programs is to study the secular frequency as a function of $U_{DC}$ or $U_{RF}$. See subsection 2.3.2 and figures 2.3, 2.4.
 
 ## The molecular source
 
