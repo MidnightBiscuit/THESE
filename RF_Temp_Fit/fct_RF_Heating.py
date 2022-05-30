@@ -50,14 +50,18 @@ def data_retrieve(all_subdir,points_and_coord, condition_parameters, slash_cfg,*
     print('> Points |',len(points_and_coord))
     print('> Simulations pour chaque point |', num_runs)
     
-    data0 = [[] for i in range(len(points_and_coord))] # file path to SimuType4
+    data0 = [[] for i in range(len(points_and_coord))] # Size
+    data1 = [[] for i in range(len(points_and_coord))] # Temperature
+    data2 = [[] for i in range(len(points_and_coord))] # xva
+    data3 = [[] for i in range(len(points_and_coord))] # trj
     data_address = [[] for i in range(len(points_and_coord))]
 
     # Variables à deux coordonnées : [point, try]
     shapevar = (len(points_and_coord),len(num_runs))
     Time        = []
     Temperature = []
-    
+    Size_w      = []
+    Size2       = []    
     t0 = time.clock()
     print("Hello")
 
@@ -74,11 +78,20 @@ def data_retrieve(all_subdir,points_and_coord, condition_parameters, slash_cfg,*
         print(onlyfiles)
         # build path file
         data0[pnt].append('{}/{}'.format(address,sort(onlyfiles)[0].strip('.dat')))
+        data1[pnt].append('{}/{}'.format(address,sort(onlyfiles)[1].strip('.dat')))
         data_address[pnt].append(address)
 
         # load fluorescence and T
-        Time.append( loadtxt(str(data0[pnt][0])+'.dat',unpack=True)[0] )
-        Temperature.append( loadtxt(str(data0[pnt][0])+'.dat',unpack=True)[4:7] )
+        Time.append( loadtxt(str(data1[pnt][0])+'.dat',unpack=True)[0] )
+        Temperature.append( loadtxt(str(data1[pnt][0])+'.dat',unpack=True)[4:7] )
+        Size_w.append( loadtxt(str(data0[pnt][0])+'.dat',unpack=True)[0:3] )
+        Size2.append( loadtxt(str(data0[pnt][0])+'.dat',unpack=True)[3] )
+        
+        onlyfiles = [f for f in listdir(address) if isfile(join(address, f)) and "xva" in f]
+        data2[pnt].append('{}/{}'.format(address,sort(onlyfiles)[0].strip('.bin')))
+        
+        onlyfiles = [f for f in listdir(address) if isfile(join(address, f)) and "trj" in f]
+        data3[pnt].append('{}/{}'.format(address,sort(onlyfiles)[0].strip('.bin')))
         
         # load cloud size before injection
         if not(rep % len(num_runs)):
@@ -93,9 +106,12 @@ def data_retrieve(all_subdir,points_and_coord, condition_parameters, slash_cfg,*
     print("Time elapsed: ", t1, 's') # CPU seconds elapsed (floating point)
     print("Time elapsed: ", t1/60, 'm') # CPU seconds elapsed (floating point)
     
-    data_name = [data_address, data0]
+    data_name = [data_address, data0, data1, data2, data3]
     
-    return data_name, num_runs, Time, Temperature 
+#    print('{}/{}'.format(address,sort(onlyfiles)[0].strip('.dat')))
+#    print('{}/{}'.format(address,sort(onlyfiles)[1].strip('.dat')))
+    
+    return data_name, num_runs, Time, Temperature, Size_w, Size2
 
 def load_gui(filter_nocomplete):
 
@@ -127,11 +143,11 @@ def load_gui(filter_nocomplete):
 
     if 'home' in file_path:
         if 'Hobitton' or 'Rivendel' in file_path :
-            slashcond = 6 # the slash number just before runs (after date)
+            slashcond = -1 # the slash number just before runs (after date)
         else:
-            slashcond = 6 # the slash number just before runs (after date)
+            slashcond = -1 # the slash number just before runs (after date)
     else:
-        slashcond = -2
+        slashcond = -1
 
     print('> myslashpos |',myslashpos)
     print('> slashcond |',slashcond)
