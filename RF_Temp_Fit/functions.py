@@ -34,6 +34,27 @@ def load_xv2(filename):
 
 	r2_v2 = reshape(r2_v2, (6, junk[0]//8//6),order='F')
 	return r2_v2
+	
+def load_xv2rlim(filename):
+	fid = open(filename, 'rb')
+	junk = fromfile(fid, int32,1)        # Read record start tag
+	j_save_temp  = fromfile(fid, int32, 1);
+	junk = fromfile(fid, int32,1)        # Read record stop tag
+
+	junk = fromfile(fid, int32,1)        # Read record start tag
+	n_ions  = fromfile(fid, int32, 1);
+	junk = fromfile(fid, int32,1)        # Read record stop tag
+
+	junk = fromfile(fid, int32,1)        # Read record start tag
+	print(junk)
+	r2_v2  = fromfile(fid, float64, junk[0]//8);
+	junk = fromfile(fid, int32,1)        # Read record stop tag
+	print(junk)
+
+	fid.close
+
+	r2_v2 = reshape(r2_v2, (9, junk[0]//8//9),order='F')
+	return r2_v2
 
 def load_x_3DHarmo(filename):
 	fid = open(filename, 'rb')
