@@ -26,11 +26,8 @@ $\star$ ```2021_Mathieu_parameters.ipynb``` computes all trapping parameters for
 
 $\star$ ```Continued fraction.ipynb``` computes the $\beta_u(a_u,q_u)$ for a given $q_u$ in both adiabatic and non-adiabatic cases (with the continued fraction). Also computes for a given $q$ several other parameters such as $U_{RF}$, $f_x$ ... Also computes the axial voltage required to have a unity aspect ratio $\alpha = 1$.
 
-<<<<<<< HEAD
-=======
 $\star$ ```computation_V_f_q_piege_nonadia.ipynb``` computes the trapping frequencies and Mathieu parameters as a function of the radio-frequency field amplitude. It considers non-adiabatic case and adiabatic case. It provides a beautiful and informative graph.
 
->>>>>>> abcec4537c18105df704f4925240f6224d0cf0c5
 `Potentiels_piege.ipynb` computes trapping potential in 1D, 2D, for quadrupole and other multipoles.
 
 ```trap_basic_equations.ipynb``` is a small code to compute trapping parameters (frequencies, aspect ratio, maximum axial potential for stable trapping) from trapping voltages. See subsection 1.1.2 and figures 1.2 and 1.3.
@@ -48,13 +45,11 @@ See figure 2.7 and 3.2. This program is also used in order to measure contact po
 
 #### Tickle analysis
 
-<<<<<<< HEAD
 `data_tickle.ipynb` and `data_tickle_reverse.ipynb` retrieve fluorescence measured during a tickle experiment and plot the fluo. Those programs also provide a peak detection in the fluorescence in order to automatically detect the main tickle frequency. The program associates the right frequency with the peak, provided the required elements are provided (scan amplitude, trapping voltages and so on). See subsection 2.3.1 and figure 2.2.
-=======
-`data_tickle.ipynb` and `data_tickle_reverse.ipynb` retrieve fluorescence measured during a tickle experiment and plot the fluo. Those programs also provide a peak detection in the fluorescence in order to automatically detect the main tickle frequency. The program associates the right frequency with the peak, provided the required elements are provided (scan amplitude, trapping voltages and so on). See subsection 2.3.1 and figure 2.2. See also ```data_tickle-220713.ipynb``` and ```data_tickle-220713.ipynb```
->>>>>>> abcec4537c18105df704f4925240f6224d0cf0c5
 
-`data_UDC.ipynb` and `data_URF.ipynb` are also related to tickle measurement. The purpose of those programs is to study the secular frequency as a function of $U_{DC}$ or $U_{RF}$. See subsection 2.3.2 and figures 2.3, 2.4.
+`data_tickle.ipynb` and `data_tickle_reverse.ipynb` retrieve fluorescence measured during a tickle experiment and plot the fluo. Those programs also provide a peak detection in the fluorescence in order to automatically detect the main tickle frequency. The program associates the right frequency with the peak, provided the required elements are provided (scan amplitude, trapping voltages and so on). See subsection 2.3.1 and figure 2.2. See also ```data_tickle-220713.ipynb``` and ```data_tickle-220713.ipynb```
+
+`data_UDC.ipynb`  and  `data_URF.ipynb` are also related to tickle measurement. The purpose of those programs is to study the secular frequency as a function of $U_{DC}$ or $U_{RF}$. See subsection 2.3.2 and figures 2.3, 2.4.
 
 ## The molecular source
 
