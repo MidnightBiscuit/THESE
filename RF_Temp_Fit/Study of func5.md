@@ -12,7 +12,7 @@ func5\_to10 = 10^{func5} = 10^{A\frac{t-t_0}{(C+|t-t_0|^k)^{(1/k)}}}10^B
 $$
 What I do usually is fit the Temperature with $func5\_to10$, and then display both the temperature T and $func5\_to10$ in `semilogy`. The function $func5\_to10$ is plotted below in linear and `semilogy` scales. 
 
-![testplotfunc5_to10](/home/adrien/Documents/Programmes/Python/THESE/RF_Temp_Fit/testplotfunc5_to10.png)
+![testplotfunc5_to10](/home/adrien/Documents/Programmes/Python/THESE/RF_Temp_Fit/20220617_data/testplotfunc5_to10.png)
 
 *Additional information can be found [over Wikipedia](https://en.wikipedia.org/wiki/Sigmoid_function). The function $func5$ is a quite general form of a sigmoid function, that can be used to reproduce several well-known functions such as the logistic function, the error function or the hyperbolic tangent function, but it is not the more generalised case because apparently it is possible to define a sigmoid as a special case of another function that can be found in the aforementioned wiki.*
 
@@ -50,6 +50,6 @@ $$
 
 ![func5_to10_logy_k_bis](/home/adrien/Documents/Programmes/Python/THESE/RF_Temp_Fit/20220617_data/func5_to10_logy_k_bis.png)
 
-## Beyond what is already been done
+## Beyond what is already done
 
 The excellent tool to explore Growth-curve can be found [here](https://ogarciav.github.io/grex/). Some cases of non-symmetrical curves could be found with assymetrical derivatives. See Schumacher, or also on the top left part of the clickable graph.
