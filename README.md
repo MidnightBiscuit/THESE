@@ -20,7 +20,7 @@ $\star$ `fluo-variations_optimal-temp.ipynb` and `fluo-variations_optimal-temp_m
 
 #### General purpose
 
-$\star$ ```2021_Mathieu_parameters.ipynb``` computes all trapping parameters for GiantMol and TADOTI, given trapping voltages.
+$\star$ ```2021_Mathieu_parameters.ipynb``` computes all trapping parameters for GiantMol and TADOTI, given trapping voltages. True for any Mathieu parameter (non-adiabatic). Provides secular frequencies, potential aspect ratio and conversely computes the right trapping voltages to provide the desired aspect ratio.
 
 ```axial_potential.ipynb``` computes the axial trapping voltage. Quadratic and gaussian. See subsection 1.4.2, figure 1.6.
 
@@ -28,9 +28,7 @@ $\star$ ```Continued fraction.ipynb``` computes the $\beta_u(a_u,q_u)$ for a giv
 
 $\star$ ```computation_V_f_q_piege_nonadia.ipynb``` computes the trapping frequencies and Mathieu parameters as a function of the radio-frequency field amplitude. It considers non-adiabatic case and adiabatic case. It provides a beautiful and informative graph.
 
-`Potentiels_piege.ipynb` computes trapping potential in 1D, 2D, for quadrupole and other multipoles.
-
-```trap_basic_equations.ipynb``` is a small code to compute trapping parameters (frequencies, aspect ratio, maximum axial potential for stable trapping) from trapping voltages. See subsection 1.1.2 and figures 1.2 and 1.3.
+`Potentiels_piege.ipynb` computes trapping potential in 1D, 2D, for quadrupole and other multipoles. See subsection 1.1.2 and figures 1.2 and 1.3.
 
 #### Image analysis
 
